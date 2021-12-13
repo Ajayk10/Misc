@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="https://www.jing.fm/clipimg/full/0-495_sun-clip-art-sun-transparent-background.png" type="image/x-icon"/>
+    
+  <title>Astrology</title>
+</head>
+<body>
+</html>
+{% extends 'base.html' %}
+{% load static %}
+<html>
+{% block content %}
+
+<div class="card mb-3"  >
+    <div class="row g-0">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center;">Enter the Salary here..!!</h5>
+          <form class="form-floating">
+            <input type="number" class="form-control" id="floatingInputValue" placeholder="Current Salary"  >
+<hr/>
+            <table class="table table-bordered"  >
+                <tr>
+                    <th scope="col" colspan="2" style="text-align:center;color:blueviolet">Enter the Expected Hike details</th>
+
+                  </tr>
+                <tr>
+                    <th scope="row" style="text-align:center;">Expectation 1</th>
+                    <th scope="row" style="text-align:center;">Expectation 2</th>
+                </tr>
+                <tr>
+                    <td scope="row" style="text-align:center;"><input   id="exp1" type="number" class="form-control"></td>
+                    <td scope="row" style="text-align:center;"><input   id="exp2" type="number" class="form-control"></td>
+                </tr>
+            </table>
+            
+          </form>
+          <button onclick="execute()" class="btn btn-success">Calculate</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+<hr style="color: white;">
+  <div class="card"  >
+    <div class="card-body">
+      <table class="table table-bordered"  >
+        <tr>
+            <th scope="col" colspan="2" style="text-align:center;" id="h1">%</th>
+            <th scope="col" colspan="2" style="text-align:center;" id="h2">%</th>
+          </tr>
+          <tr>
+            <td scope="row" style="text-align:center;">Current Salary</td>
+            <td scope="row" style="text-align:center;" id="cur1">0</td>
+            <td scope="row" style="text-align:center;" >Current Salary</td>
+            <td scope="row" style="text-align:center;" id="cur2">0</td>
+          </tr>
+          <tr>  
+            <td scope="row" style="text-align:center;">Revised Salary</td>
+            <td scope="row" style="text-align:center;" id="revised1">0</td>
+            <td scope="row" style="text-align:center;" >Revised Salary</td>
+            <td scope="row" style="text-align:center;" id="revised2">0</td>
+          </tr>
+          <tr>  
+            <td scope="row" style="text-align:center;">Take home after TDS</td>
+            <td scope="row" style="text-align:center;" id="tds1">0</td>
+            <td scope="row" style="text-align:center;" >Take home after TDS</td>
+            <td scope="row" style="text-align:center;" id="tds2">0</td>
+          </tr>
+      </table>
+    </div>
+  </div>
+  <script>
+    function execute()
+    {
+      //document.getElementById("revised1").innerHTML="";
+
+      var sal = document.getElementById("floatingInputValue").value;
+      var one = (document.getElementById("exp1").value);
+      document.getElementById("h1").innerHTML=one+"%";
+
+      var two = (document.getElementById("exp2").value);
+      document.getElementById("h2").innerHTML=two+"%";
+
+      document.getElementById("cur1").innerHTML=document.getElementById("cur2").innerHTML=sal;
+
+      var begin = sal*one/100;
+      var revised1 = Number(sal)+begin;
+      var tds1 = Number(revised1)-(revised1/10)
+      document.getElementById("revised1").innerHTML=revised1;
+      document.getElementById("tds1").innerHTML=tds1;
+
+      var middle = sal*two/100;
+      var revised2 = Number(sal)+middle;
+      var tds2 = Number(revised2)-(revised2/10)
+      document.getElementById("revised2").innerHTML=revised2;
+      document.getElementById("tds2").innerHTML=tds2;
+
+    }
+
+   
+</script>
+  {% endblock %}
+</html>
